@@ -27,6 +27,7 @@ function render(leads) {
     ulEl.innerHTML = listItems
 }
 
+//DELETE SOMENTE COM DUPLO CLICK NO ICON
 deleteBtn.addEventListener("dblclick", function () {
     localStorage.clear()
     myLeads = []
