@@ -1,10 +1,11 @@
 const inputBtn = document.getElementById("input-btn")
-const deleteBtn = document.getElementById("delete-btn")
+const clearListBtn = document.getElementById("clearList-btn")
 let myLeads = []
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 const saveTabBtn = document.getElementById("tab-btn")
+const deleteItemBtn = document.getElementById("deleteItem-btn")
 
 
 if (leadsFromLocalStorage) {
@@ -18,9 +19,12 @@ function render(leads) {
     for (let i = 0; i < leads.length; i++) {
         listItems += `
         <li>
+        <div>
             <a target='_blank' href='${leads[i]}'>
                 ${leads[i]}
             </a>
+            <button id="deleteItem-btn" class="btn"><i class="fa fa-trash fa-lg"></i></button>
+        </div>
         </li>
         `
     }
@@ -28,7 +32,7 @@ function render(leads) {
 }
 
 //DELETE SOMENTE COM DUPLO CLICK NO ICON
-deleteBtn.addEventListener("dblclick", function () {
+clearListBtn.addEventListener("dblclick", function () {
     localStorage.clear()
     myLeads = []
     render(myLeads)
@@ -36,16 +40,17 @@ deleteBtn.addEventListener("dblclick", function () {
 
 //SALVAR TAB ATUAL
 saveTabBtn.addEventListener("click", function () {
-
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
         myLeads.push(tabs[0].url)
         localStorage.setItem("myLeads", JSON.stringify(myLeads))
         render(myLeads)
     })
+})
 
-
-    //inputEl.value = ""
-
+deleteItemBtn.addEventListener("click", function (){
+    //myLeads.removeItem(id)
+    localStorage.removeItem(id)
+    render(myLeads)
 })
 
 
