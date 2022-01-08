@@ -5,7 +5,7 @@ const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 const saveTabBtn = document.getElementById("tab-btn")
-const deleteItemBtn = document.getElementById("deleteItem-btn")
+//const deleteItemBtn = document.getElementById("deleteItem-btn")
 
 
 if (leadsFromLocalStorage) {
@@ -23,15 +23,15 @@ function render(leads) {
             <a target='_blank' href='${leads[i]}'>
                 ${leads[i]}
             </a>
-            <button id="deleteItem-btn" class="btn"><i class="fa fa-trash fa-lg"></i></button>
+<!--            <button id="deleteItem-btn" class="btn"><i class="fa fa-trash fa-lg"></i></button>          -->
         </div>
-        </li>
+        </li>        
         `
     }
     ulEl.innerHTML = listItems
 }
 
-//DELETE SOMENTE COM DUPLO CLICK NO ICON
+//DELETE ALL SOMENTE COM DUPLO CLICK NO ICON
 clearListBtn.addEventListener("dblclick", function () {
     localStorage.clear()
     myLeads = []
@@ -47,14 +47,21 @@ saveTabBtn.addEventListener("click", function () {
     })
 })
 
-deleteItemBtn.addEventListener("click", function (){
-    //myLeads.removeItem(id)
+
+document.getElementById("deleteItem-btn").addEventListener("click", deleteItemFromLeads)
+
+
+function deleteItemFromLeads(index) {
+
+    console.log("ai caramba")
+    console.log(index.pointerId)
+    /*myLeads.splice(index,1)
     localStorage.removeItem(id)
-    render(myLeads)
-})
+    render(myLeads)*/
+}
 
 
-
+//onclick="deleteItemFromLeads(${leads[i]})"
 /*inputBtn.addEventListener("click", function () {
     if(inputEl.value){
         myLeads.push(inputEl.value)
@@ -64,5 +71,3 @@ deleteItemBtn.addEventListener("click", function (){
         inputEl.value = ""
     }
 })*/
-
-//6h 46m
