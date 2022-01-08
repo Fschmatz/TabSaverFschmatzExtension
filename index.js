@@ -47,7 +47,7 @@ saveTabBtn.addEventListener("click", function () {
     })
 })
 
-
+/*
 document.getElementById("deleteItem-btn").addEventListener("click", deleteItemFromLeads)
 
 
@@ -55,10 +55,10 @@ function deleteItemFromLeads(index) {
 
     console.log("ai caramba")
     console.log(index.pointerId)
-    /*myLeads.splice(index,1)
+    /!*myLeads.splice(index,1)
     localStorage.removeItem(id)
-    render(myLeads)*/
-}
+    render(myLeads)*!/
+}*/
 
 
 //onclick="deleteItemFromLeads(${leads[i]})"
