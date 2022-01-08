@@ -1,11 +1,11 @@
 const inputBtn = document.getElementById("input-btn")
+const inputEl = document.getElementById("input-el") //usado pra anotar
+
 const clearListBtn = document.getElementById("clearList-btn")
 let myLeads = []
-const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
-const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 const saveTabBtn = document.getElementById("tab-btn")
-//const deleteItemBtn = document.getElementById("deleteItem-btn")
 
 
 if (leadsFromLocalStorage) {
@@ -23,12 +23,20 @@ function render(leads) {
             <a target='_blank' href='${leads[i]}'>
                 ${leads[i]}
             </a>
-<!--            <button id="deleteItem-btn" class="btn"><i class="fa fa-trash fa-lg"></i></button>          -->
+           <button id="deleteItem-btn${[i]}" class="box" ><i class="fa fa-trash fa-lg"></i></button>        
         </div>
-        </li>        
+        </li>
         `
     }
     ulEl.innerHTML = listItems
+
+
+
+    let buttons = document.querySelectorAll(".box");
+
+    for(let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener("click", deleteItemFromLeads);
+    }
 }
 
 //DELETE ALL SOMENTE COM DUPLO CLICK NO ICON
@@ -47,18 +55,20 @@ saveTabBtn.addEventListener("click", function () {
     })
 })
 
-/*
-document.getElementById("deleteItem-btn").addEventListener("click", deleteItemFromLeads)
+
+//document.getElementById("deleteItem-btn").addEventListener("click", deleteItemFromLeads)
 
 
-function deleteItemFromLeads(index) {
+function deleteItemFromLeads(evt) {
 
-    console.log("ai caramba")
-    console.log(index.pointerId)
-    /!*myLeads.splice(index,1)
-    localStorage.removeItem(id)
-    render(myLeads)*!/
-}*/
+    let itemToDelete = evt.currentTarget.valueOf().id
+    let x = itemToDelete.replace('deleteItem-btn','');
+    console.log(x)
+
+    myLeads.splice(x,1)
+    //leadsFromLocalStorage.remove(x)
+    render(myLeads)
+}
 
 
 //onclick="deleteItemFromLeads(${leads[i]})"
