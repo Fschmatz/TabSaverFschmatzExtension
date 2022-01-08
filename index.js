@@ -30,10 +30,7 @@ function render(leads) {
     }
     ulEl.innerHTML = listItems
 
-
-
     let buttons = document.querySelectorAll(".box");
-
     for(let i = 0; i < buttons.length; i++){
         buttons[i].addEventListener("click", deleteItemFromLeads);
     }
@@ -55,18 +52,15 @@ saveTabBtn.addEventListener("click", function () {
     })
 })
 
-
-//document.getElementById("deleteItem-btn").addEventListener("click", deleteItemFromLeads)
-
-
 function deleteItemFromLeads(evt) {
 
+    //TRAMBIQUE
     let itemToDelete = evt.currentTarget.valueOf().id
     let x = itemToDelete.replace('deleteItem-btn','');
-    console.log(x)
-
     myLeads.splice(x,1)
-    //leadsFromLocalStorage.remove(x)
+
+
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
     render(myLeads)
 }
 
