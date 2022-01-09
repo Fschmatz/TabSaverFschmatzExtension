@@ -1,11 +1,10 @@
-const inputBtn = document.getElementById("input-btn")
-const inputEl = document.getElementById("input-el") //usado pra anotar
-
 const clearListBtn = document.getElementById("clearList-btn")
 let myLeads = []
 const ulEl = document.getElementById("ul-el")
 let leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
 const saveTabBtn = document.getElementById("tab-btn")
+
+// console.log( tabs[0].title)
 
 
 if (leadsFromLocalStorage) {
@@ -46,6 +45,7 @@ clearListBtn.addEventListener("dblclick", function () {
 //SALVAR TAB ATUAL
 saveTabBtn.addEventListener("click", function () {
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+
         myLeads.push(tabs[0].url)
         localStorage.setItem("myLeads", JSON.stringify(myLeads))
         render(myLeads)
@@ -63,15 +63,3 @@ function deleteItemFromLeads(evt) {
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
     render(myLeads)
 }
-
-
-//onclick="deleteItemFromLeads(${leads[i]})"
-/*inputBtn.addEventListener("click", function () {
-    if(inputEl.value){
-        myLeads.push(inputEl.value)
-        //save
-        localStorage.setItem("myLeads", JSON.stringify(myLeads))
-        render(myLeads)
-        inputEl.value = ""
-    }
-})*/
