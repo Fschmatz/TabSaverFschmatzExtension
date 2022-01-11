@@ -26,6 +26,13 @@ p {
     font-weight: bold;
     border: none;
     border-radius: 10px;
+    transition: 0.2s all;
+}
+
+#tab-btn:active {
+    transform: scale(0.95);
+    background: #57b657;
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
 button {
@@ -50,6 +57,13 @@ button {
     float: left;
     width: 150px;
     background: #303034;
+    transition: 0.2s all;
+}
+
+#clearList-btn:active {
+    transform: scale(0.95);
+    background: #d93939;
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
 #deleteItem-btn {
